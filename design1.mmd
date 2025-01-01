@@ -1,0 +1,37 @@
+erDiagram
+    exam_result {
+      exam_result_id STRING 
+      student_id STRING FK
+      subject_id STRING FK
+      exam_date DATE
+      exam_event STRING
+      exam_score INT
+      exam_submit_time TIMESTAMP
+    }
+    student {
+      student_id STRING FK
+      student_name STRING
+      registered_class STRING
+      home_region STRING
+    }
+    subject {
+      subject_id STRING
+      subject_name STRING
+    }
+    teacher {
+      teacher_id STRING FK
+      teacher_name STRING
+      subject_id STRING FK
+      subject_name STRING
+    }
+    teacher_mapping {
+      subject_id STRING FK
+      class STRING
+      teacher_id STRING FK
+    }
+
+    exam_result ||--|| student : "FK student_id"
+    exam_result ||--|| subject : "FK subject_id"
+    teacher ||--|| subject : "FK subject_id"
+    teacher_mapping ||--|| subject : "FK subject_id"
+    teacher_mapping ||--|| teacher : "FK teacher_id"
